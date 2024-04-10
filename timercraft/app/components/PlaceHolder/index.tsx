@@ -5,7 +5,7 @@ interface IProp {
   width?: number;
   isDisabled?: boolean;
 }
-export default function Title({
+export default function PlaceHolder({
   placeholder,
   width,
   isDisabled = false,
