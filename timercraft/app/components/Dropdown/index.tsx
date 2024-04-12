@@ -1,13 +1,20 @@
 "use client";
 import DropdownAppearanceIcon from "@/app/asset/DropdownAppearanceIcon";
 import { useOutsideClick } from "@/app/hooks/useOutsideClick";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IProp {
   menuItems: { name: string; value: string }[];
   isDisabled?: boolean;
+  selected: { name: string; value: string };
+  setSelected: (selected: { name: string; value: string }) => void;
 }
-export default function Dropdown({ menuItems, isDisabled = false }: IProp) {
+export default function Dropdown({
+  menuItems,
+  isDisabled = false,
+  selected,
+  setSelected,
+}: IProp) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useOutsideClick(() => setIsOpen(false));
 
@@ -19,7 +26,7 @@ export default function Dropdown({ menuItems, isDisabled = false }: IProp) {
         onClick={() => setIsOpen(!isOpen)}
         disabled={isDisabled}
       >
-        {menuItems[0].name}
+        {selected?.name}
         <DropdownAppearanceIcon />
       </button>
       {isOpen && (
@@ -30,7 +37,7 @@ export default function Dropdown({ menuItems, isDisabled = false }: IProp) {
                 <li
                   key={item.value}
                   className="block px-4 py-2 hover:bg-gray-200"
-                  onClick={() => setIsOpen(!isOpen)}
+                  onClick={() => {setSelected(item); setIsOpen(!isOpen)}}
                 >
                   {item.name}
                 </li>
