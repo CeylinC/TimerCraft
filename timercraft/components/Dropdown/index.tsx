@@ -9,7 +9,7 @@ export default function Dropdown({
   menuItems,
   isDisabled = false,
   selected,
-  setSelected,
+  onChange,
   className,
 }: IProp) {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,23 +26,24 @@ export default function Dropdown({
         onClick={() => setIsOpen(!isOpen)}
         disabled={isDisabled}
       >
-        {selected?.name}
+        {menuItems.filter((item) => item.value === selected)[0].name}
         <DropdownAppearanceIcon />
       </button>
       {isOpen && (
         <div className="z-10 bg-gray-100 rounded-lg mt-2 absolute w-full">
           <ul className="py-2 text-sm">
-            {menuItems.map((item) => {
+            {menuItems.map((item, index) => {
               return (
                 <li
-                  key={item.value}
+                  key={index}
+                  id={item.value}
                   className={clsx(
                     "block px-4 py-2 cursor-pointer",
                     "hover:bg-gray-200",
-                    item.value === selected.value && "font-bold"
+                    item.value === selected && "font-bold"
                   )}
-                  onClick={() => {
-                    setSelected(item);
+                  onClick={(event) => {
+                    onChange(event);
                     setIsOpen(!isOpen);
                   }}
                 >
