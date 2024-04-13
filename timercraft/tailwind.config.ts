@@ -12,6 +12,7 @@ const config: Config = {
         header: "var(--color-header)",
         card: "var(--color-card)",
         text: "var(--color-text)",
+        screen: "var(--color-screen)",
       },
     },
   },

@@ -7,8 +7,18 @@
     --color-header: #ffffff;
     --color-card: #248277;
     --color-text: #0a0908;
+    --color-screen: #faf9f9;
   }
   @import "styles/themes/dark.css";
   @import "styles/themes/light.css";
   @import "styles/themes/colorful.css";
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
 }
