@@ -1,4 +1,4 @@
-export interface TimerForm {
+export interface ITimerForm {
   timerStyle: string;
   closeButton: boolean;
   timerTitle: string;

@@ -4,14 +4,20 @@
 
 @layer base {
   :root {
-    --color-header: #ffffff;
-    --color-card: #248277;
-    --color-text: #0a0908;
-    --color-screen: #faf9f9;
+    --color-title: #0a0908;
+    --color-label: #bdbdbd;
+    --color-disabled: #c7c7c7;
+    --color-label-active: #0a0908;
+    --color-sidebar: #ffffff;
+    --color-input-active: #0a0908;
+    --color-input-background: #e5e7eb;
+    --color-input-hover: #d6d6d8;
+    --color-input-accent: #ffffff;
+    --color-background: #e5e6e4;
   }
-  @import "styles/themes/dark.css";
-  @import "styles/themes/light.css";
-  @import "styles/themes/colorful.css";
+  @import "../constant/themes/dark.css";
+  @import "../constant/themes/light.css";
+  @import "../constant/themes/colorful.css";
 }
 
 ::-webkit-scrollbar {

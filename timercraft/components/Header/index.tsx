@@ -1,32 +1,30 @@
 import CloseIcon from "@/asset/CloseIcon";
 import CounterCard from "../CounterCard";
 import { IProp } from "./_type";
-import { TimerForm } from "@/model/timerForm";
+import { ITimerForm } from "@/model/interface/ITimerForm";
 import { useCounterDown } from "@/hooks/useCounterDown";
 import clsx from "clsx";
 
 export default function Header({ form }: IProp) {
-  const timeList = ["days", "hours", "minutes", "seconds"];
   const time = useCounterDown(form.remainingTimePeriod, form.setTime);
   return (
     <div
-      id="header"
       className={clsx(
-        "min-h-[72px] flex items-center justify-evenly flex-col xl:flex-row bg-header left-0 right-0",
+        "min-h-[72px] flex items-center justify-evenly flex-col bg-header left-0 right-0 xl:flex-row",
         form.positioning.includes("bottom") ? "bottom-0" : "top-0",
         form.positioning.includes("Sticky") ? "sticky" : "absolute"
       )}
     >
       <h1 className="text-2xl font-bold text-text">{form.timerTitle}</h1>
       <div className="flex flex-row flex-nowrap mt-2 xl:mt-0">
-        {timeList
+        {Object.keys(form.displayCount)
           .filter(
             (item) => form.displayCount[item as keyof typeof form.displayCount]
           )
           .map((item) => (
             <CounterCard
               key={item}
-              cardTitle={form[(item + "Label") as keyof TimerForm] as string}
+              cardTitle={form[(item + "Label") as keyof ITimerForm] as string}
               count={
                 time !== undefined
                   ? time[item as keyof typeof form.displayCount]

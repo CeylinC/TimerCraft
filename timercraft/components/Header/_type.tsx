@@ -1,5 +1,5 @@
-import { TimerForm } from "@/model/timerForm";
+import { ITimerForm } from "@/model/interface/ITimerForm";
 
 export interface IProp {
-  form: TimerForm;
+  form: ITimerForm;
 }
