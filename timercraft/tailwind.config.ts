@@ -14,6 +14,9 @@ const config: Config = {
         text: "var(--color-text)",
         screen: "var(--color-screen)",
       },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+      },
     },
   },
   plugins: [],

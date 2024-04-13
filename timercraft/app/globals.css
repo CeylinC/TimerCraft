@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  html {
+  :root {
     --color-header: #ffffff;
     --color-card: #248277;
     --color-text: #0a0908;
