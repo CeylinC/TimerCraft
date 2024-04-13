@@ -36,6 +36,6 @@ export class TimerForm {
     this.minutesLabel = data?.minutesLabel || "Minutes";
     this.secondsLabel = data?.secondsLabel || "Seconds";
     this.buttonText = data?.buttonText || "Shop Now!";
-    this.buttonLink = data?.buttonLink || "www.beforesunset.ai/";
+    this.buttonLink = data?.buttonLink || "https://beforesunset.ai/";
   }
 }

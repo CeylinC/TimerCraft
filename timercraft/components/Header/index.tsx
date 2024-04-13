@@ -4,6 +4,7 @@ import { IProp } from "./_type";
 import { ITimerForm } from "@/model/interface/ITimerForm";
 import { useCounterDown } from "@/hooks/useCounterDown";
 import clsx from "clsx";
+import Link from "next/link";
 
 export default function Header({ form }: IProp) {
   const time = useCounterDown(form.remainingTimePeriod, form.setTime);
@@ -34,12 +35,13 @@ export default function Header({ form }: IProp) {
             />
           ))}
       </div>
-      <a
+      <Link
         href={form.buttonLink}
+        passHref={true}
         className="text-2xl px-4 m-2 font-bold rounded-lg bg-card text-text"
       >
         {form.buttonText}
-      </a>
+      </Link>
       {!form.closeButton && (
         <CloseIcon className="absolute right-2 top-2 stroke-text xl:top-auto sm:right-5" />
       )}
