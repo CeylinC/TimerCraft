@@ -1,5 +1,6 @@
 "use client";
 
+import MenuIcon from "@/asset/menuIcon";
 import CheckButton from "@/components/CheckButton";
 import Dropdown from "@/components/Dropdown";
 import Header from "@/components/Header";
@@ -9,7 +10,6 @@ import Title from "@/components/Title";
 import Toggle from "@/components/Toggle";
 import { TimerForm } from "@/model/timerForm";
 import clsx from "clsx";
-import Head from "next/head";
 import { useState } from "react";
 
 const timerList = [
@@ -62,14 +62,16 @@ export default function Home() {
     <div className="flex flex-row h-screen relative">
       <button
         className={clsx(
-          "bg-white w-10 h-10 absolute z-30 rounded-r-md outline-none",
-          open ? "md:left-[calc(33.33%-2.5rem)] left-[calc(83.33%-2.5rem)]" : "left-0 shadow-lg"
+          "bg-white w-10 h-10 absolute z-30 rounded-r-md outline-none flex items-center justify-center",
+          open
+            ? "md:left-[calc(33.33%-2.5rem)] left-[calc(83.33%-2.5rem)]"
+            : "left-0 shadow-lg"
         )}
         onClick={() => {
           setOpen(!open);
         }}
       >
-        X
+        <MenuIcon className="w-5 fill-black" />
       </button>
       <div
         className={clsx(
@@ -77,7 +79,7 @@ export default function Home() {
           open ? "md:w-2/6 w-5/6 p-6" : "w-0 p-0"
         )}
       >
-        <Title className="text-2xl" title="Timer Settings">
+        <Title className="text-2xl font-roboto" title="Timer Settings">
           <Title title="Timer Style">
             <Dropdown
               menuItems={timerList}
@@ -145,7 +147,7 @@ export default function Home() {
             </div>
           </Title>
         </Title>
-        <Title className="text-2xl" title="Counters and Labels">
+        <Title className="text-2xl font-roboto" title="Counters and Labels">
           <Title title="Display the count in">
             <div className="flex flex-row flex-wrap">
               {timeList.map((item) => (
@@ -217,7 +219,7 @@ export default function Home() {
             />
           </Title>
         </Title>
-        <Title className="text-2xl" title="Button Settings">
+        <Title className="text-2xl font-roboto" title="Button Settings">
           <Title title="Button Text">
             <PlaceHolder
               placeholder={form.buttonText}
@@ -243,7 +245,9 @@ export default function Home() {
           </Title>
         </Title>
       </div>
-      <div className={clsx("h-full bg-gray-300 w-full", open ? "md:w-4/6" : "")}>
+      <div
+        className={clsx("h-full bg-gray-300 w-full", open ? "md:w-4/6" : "")}
+      >
         <div
           id="screen"
           className="bg-screen my-8 mx-5 h-[calc(100%-4rem)] relative"
