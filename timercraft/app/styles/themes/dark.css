@@ -1,0 +1,5 @@
+html[data-theme="dark"] {
+  --color-header: #0a0908;
+  --color-card: #248277;
+  --color-text: #ffffff;
+}
