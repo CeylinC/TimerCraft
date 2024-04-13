@@ -3,7 +3,7 @@ import { IProp } from "./_type";
 export default function Title({ className, title, children }: IProp) {
   return (
     <>
-      <p className={`font-semibold ${className}`}>{title}</p>
+      <p className={`font-semibold text-title ${className}`}>{title}</p>
       <div
         className={
           className === undefined

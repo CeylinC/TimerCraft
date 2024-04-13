@@ -19,8 +19,9 @@ export default function Dropdown({
     <div className={`relative w-44 ${className}`} ref={menuRef}>
       <button
         className={clsx(
-          "bg-gray-100 outline-none rounded-lg text-sm px-4 py-[10.5px] inline-flex items-center justify-between w-full",
-          "hover:bg-gray-300"
+          "bg-inputBackground outline-none rounded-lg text-sm px-4 py-[10.5px] inline-flex items-center justify-between w-full text-labelActive",
+          "hover:bg-inputHover",
+          isDisabled && "cursor-not-allowed"
         )}
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -30,7 +31,7 @@ export default function Dropdown({
         <DropdownAppearanceIcon />
       </button>
       {isOpen && (
-        <div className="z-10 bg-gray-100 rounded-lg mt-2 absolute w-full">
+        <div className="z-10 bg-inputBackground rounded-lg mt-2 absolute w-full">
           <ul className="py-2 text-sm">
             {menuItems.map((item, index) => {
               return (
@@ -38,8 +39,8 @@ export default function Dropdown({
                   key={index}
                   id={item.value}
                   className={clsx(
-                    "block px-4 py-2 cursor-pointer",
-                    "hover:bg-gray-200",
+                    "block px-4 py-2 cursor-pointer text-labelActive",
+                    "hover:bg-inputHover",
                     item.value === selected && "font-bold"
                   )}
                   onClick={(event) => {

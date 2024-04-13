@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Switch from "../Switch";
 import { IProp } from "./_type";
 
@@ -6,7 +7,11 @@ export default function Toggle({ label, className, ...props }: IProp) {
     <div className={`flex flex-row items-center ${className}`}>
       <Switch {...props} />
       <label
-        className={`ml-2 text-sm ${props.disabled && "text-gray-300"}`}
+        className={clsx(
+          "ml-2 text-sm",
+          props.disabled && "text-disabled cursor-not-allowed",
+          props.checked && "text-labelActive"
+        )}
         htmlFor={props.id}
       >
         {label}

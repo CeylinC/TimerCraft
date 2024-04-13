@@ -1,6 +1,6 @@
 "use client";
 
-import MenuIcon from "@/asset/menuIcon";
+import MenuIcon from "@/asset/MenuIcon";
 import CheckButton from "@/components/CheckButton";
 import Dropdown from "@/components/Dropdown";
 import Header from "@/components/Header";
@@ -8,43 +8,14 @@ import PlaceHolder from "@/components/PlaceHolder";
 import RadioButton from "@/components/RadioButton";
 import Title from "@/components/Title";
 import Toggle from "@/components/Toggle";
-import { TimerForm } from "@/model/timerForm";
+import { positionList, themeList, timeList } from "@/constant/input";
+import { TimerForm } from "@/model/class/TimerForm";
+import { ITimerForm } from "@/model/interface/ITimerForm";
 import clsx from "clsx";
 import { useState } from "react";
 
-const timerList = [
-  { name: "Light", value: "light" },
-  { name: "Dark", value: "dark" },
-  { name: "Colorful", value: "colorful" },
-];
-const timeList = [
-  { name: "Days", value: "days" },
-  { name: "Hours", value: "hours" },
-  { name: "Minutes", value: "minutes" },
-  { name: "Seconds", value: "seconds" },
-];
-const positionList = [
-  { name: "Top Sticky", value: "topSticky" },
-  { name: "Top Static", value: "topStatic" },
-  { name: "Bottom Static", value: "bottomStatic" },
-];
-
 export default function Home() {
-  const [form, setForm] = useState<TimerForm>({
-    timerStyle: "light",
-    closeButton: false,
-    timerTitle: "Black Friday Sale",
-    setTime: "hours",
-    remainingTimePeriod: 120,
-    positioning: "topSticky",
-    displayCount: { days: true, hours: true, minutes: true, seconds: true },
-    daysLabel: "Days",
-    hoursLabel: "Hours",
-    minutesLabel: "Minutes",
-    secondsLabel: "Seconds",
-    buttonLink: "",
-    buttonText: "Shop Now!",
-  });
+  const [form, setForm] = useState<ITimerForm>(new TimerForm());
   const [open, setOpen] = useState(true);
 
   const handleChangeDropdown = (
@@ -62,7 +33,7 @@ export default function Home() {
     <div className="flex flex-row h-screen relative">
       <button
         className={clsx(
-          "bg-white w-10 h-10 absolute z-30 rounded-r-md outline-none flex items-center justify-center",
+          "bg-sidebar w-10 h-10 absolute z-30 rounded-r-md outline-none flex items-center justify-center",
           open
             ? "md:left-[calc(33.33%-2.5rem)] left-[calc(83.33%-2.5rem)]"
             : "left-0 shadow-lg"
@@ -71,18 +42,20 @@ export default function Home() {
           setOpen(!open);
         }}
       >
-        <MenuIcon className="w-5 fill-black" />
+        <MenuIcon className="w-5 fill-title" />
       </button>
       <div
+        id="sidebar"
         className={clsx(
-          "bg-white h-full overflow-x-hidden md:relative absolute z-10 shadow-2xl md:shadow-none transition-all",
+          "bg-sidebar h-full overflow-x-hidden absolute z-10 shadow-2xl transition-all",
+          "md:shadow-none md:relative",
           open ? "md:w-2/6 w-5/6 p-6" : "w-0 p-0"
         )}
       >
         <Title className="text-2xl font-roboto" title="Timer Settings">
           <Title title="Timer Style">
             <Dropdown
-              menuItems={timerList}
+              menuItems={themeList}
               selected={form.timerStyle}
               onChange={handleChangeDropdown}
             />
@@ -176,7 +149,7 @@ export default function Home() {
           </Title>
           <Title title="Days Label">
             <PlaceHolder
-              placeholder="Days"
+              placeholder={form.daysLabel}
               onChange={(event) =>
                 setForm({
                   ...form,
@@ -187,7 +160,7 @@ export default function Home() {
           </Title>
           <Title title="Hours Label">
             <PlaceHolder
-              placeholder="Hours"
+              placeholder={form.hoursLabel}
               onChange={(event) =>
                 setForm({
                   ...form,
@@ -198,7 +171,7 @@ export default function Home() {
           </Title>
           <Title title="Minutes Label">
             <PlaceHolder
-              placeholder="Minutes"
+              placeholder={form.minutesLabel}
               onChange={(event) =>
                 setForm({
                   ...form,
@@ -209,7 +182,7 @@ export default function Home() {
           </Title>
           <Title title="Seconds Label">
             <PlaceHolder
-              placeholder="Seconds"
+              placeholder={form.secondsLabel}
               onChange={(event) =>
                 setForm({
                   ...form,
@@ -245,9 +218,7 @@ export default function Home() {
           </Title>
         </Title>
       </div>
-      <div
-        className={clsx("h-full bg-gray-300 w-full", open ? "md:w-4/6" : "")}
-      >
+      <div className={clsx("h-full bg-background w-full", open && "md:w-4/6")}>
         <div
           id="screen"
           className="bg-screen my-8 mx-5 h-[calc(100%-4rem)] relative"
