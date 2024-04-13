@@ -222,6 +222,7 @@ export default function Home() {
         <div
           id="screen"
           className="bg-screen my-8 mx-5 h-[calc(100%-4rem)] relative"
+          data-theme={form.timerStyle}
         >
           <Header form={form} />
         </div>

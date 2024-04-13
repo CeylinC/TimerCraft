@@ -1,4 +1,4 @@
-html[data-theme="colorful"] {
+#screen[data-theme="colorful"] {
   --color-header: #248277;
   --color-card: #9fcfca;
   --color-text: #0a0908;
