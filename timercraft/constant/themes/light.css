@@ -1,4 +1,4 @@
-html[data-theme="light"] {
+#screen[data-theme="light"] {
   --color-header: #ffffff;
   --color-card: #248277;
   --color-text: #0a0908;
